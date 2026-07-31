@@ -16,6 +16,8 @@ class Weather_Agent:
 
         tool = self.tools[tool_name]
         response = tool.execute(**arguments)
+        print(response)
+        
 
         prompt = f"""
         You are a helpful AI assistant.
