@@ -17,6 +17,9 @@ class GeminiLLM:
         1. weather
         Description: Returns current weather for a city.
 
+        2. calculate
+        Description: Returns addition of two numbers.
+
         Return ONLY valid JSON.
 
         Example:
@@ -27,6 +30,16 @@ class GeminiLLM:
             "city": "Hyderabad"
         }}
         }}
+        
+        Example:
+        {{
+        "tool": "calculate",
+        "arguments": {{
+            "a":10,
+            "b":20
+        }}
+        }}
+
 
         User: {user_input}
         """

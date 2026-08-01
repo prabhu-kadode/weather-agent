@@ -1,16 +1,22 @@
-from weather import Weather_Tool
+from tools.weather import Weather_Tool
+from tools.calculator import Calculate
 from llm import GeminiLLM
+from ollama_llm import Ollama_Llm
 import json
 class Weather_Agent:
     def __init__(self):
-        self.llm = GeminiLLM()
+        self.llm = Ollama_Llm()
+        
 
         self.tools = {
-            "weather":Weather_Tool()
+            "weather":Weather_Tool(),
+            "calculate":Calculate()
         }
     def run(self,user_input):
         data = json.loads(self.llm.decide(user_input))
+   
         print(data)
+       
         tool_name = data['tool']
         arguments = data['arguments']
 
@@ -18,7 +24,7 @@ class Weather_Agent:
         response = tool.execute(**arguments)
         print(response)
         
-
+        return 
         prompt = f"""
         You are a helpful AI assistant.
 

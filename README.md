@@ -27,6 +27,10 @@ Create a `.env` file in the project root and add:
 ```text
 GEMINI_API_KEY=your_gemini_api_key
 ```
+### if you don't have gemini api key then you can setup ollama locally.
+```text
+I have setup ollama locally and i am able to use it freely without bothering about 429 issue. Currently our code works with ollama. 
+```
 
 ### 3. Run the application
 
