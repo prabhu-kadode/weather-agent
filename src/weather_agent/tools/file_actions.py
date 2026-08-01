@@ -5,12 +5,21 @@ class File_Services:
         self.BASEPATH = Path.home()
     def listFiles(self,target):
         target_folder = self.BASEPATH / target
-        return target_folder.iterdir()
+        if not target_folder.exists():
+            raise FileNotFoundError(f"{target_folder} does not exist")
+
+        return [
+            file
+            for file in target_folder.iterdir()
+            if file.is_file()
+        ]
             
     def deleteFile(self):
         pass
     def move_files(self,target):
         allfiles = self.listFiles(target)
+        if len(allfiles)<=0:
+            print(f"No files present in {target} folder to be organized" )
         for file in allfiles:
             if file.is_dir():
                 continue

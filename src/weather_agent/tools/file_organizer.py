@@ -26,7 +26,6 @@ class File_Organizer:
         }
     
     def execute(self,target,action):
-        print(target,action)
         if action=='move':
             self.file_service.move_files(target)
         return "success..!"
