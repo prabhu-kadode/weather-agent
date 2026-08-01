@@ -4,7 +4,7 @@ def main():
     agent = Weather_Agent()
     
     while True:
-        user_question = input("Enter city name ")
+        user_question = input("What...!")
         if user_question.lower() == 'exit':
             break
         agent.run(user_question)

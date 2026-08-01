@@ -1,7 +1,9 @@
 from tools.weather import Weather_Tool
 from tools.calculator import Calculate
-from llm import GeminiLLM
-from ollama_llm import Ollama_Llm
+from tools.file_organizer import File_Organizer
+from llms.llm import GeminiLLM
+from llms.ollama_llm import Ollama_Llm
+
 import json
 class Weather_Agent:
     def __init__(self):
@@ -10,12 +12,16 @@ class Weather_Agent:
 
         self.tools = {
             "weather":Weather_Tool(),
-            "calculate":Calculate()
+            "calculate":Calculate(),
+            "fileorganizer":File_Organizer()
         }
     def run(self,user_input):
+        print('Thinking....!')
         data = json.loads(self.llm.decide(user_input))
    
         print(data)
+        
+ 
        
         tool_name = data['tool']
         arguments = data['arguments']

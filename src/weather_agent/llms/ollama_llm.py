@@ -20,6 +20,7 @@ class Ollama_Llm:
 
                 1. weather(city)
                 2. calculate(a, b)
+                3. fileorganizer(target,action)
 
                Return one of these JSON objects only.
 
@@ -42,6 +43,23 @@ class Ollama_Llm:
                 }
                 }
 
+                Fileorganizer:
+
+                {
+                "tool": "fileorganizer",
+                "arguments": {
+                    "target":"downloads",
+                    "action": "move"
+                }
+                }
+                Target rules:
+                Action rules:
+                - Target could be any folder name 
+                  examples: downloads, documents, and so on. 
+
+                - Use "move" when the user wants to organize, sort, categorize, or arrange files.
+                - Use "delete" only when the user explicitly asks to remove, delete, erase, or permanently discard files.
+            
                 Never answer the user's question.
                 Never explain.
                 Never use markdown.
@@ -57,4 +75,5 @@ class Ollama_Llm:
                         "temperature": 0
                     }
             )
+        print(response['message']['content'])
         return response['message']['content']
