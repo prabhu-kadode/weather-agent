@@ -22,6 +22,15 @@ class Weather_Tool:
     def description(self):
         return "Returns current weather for a given city."
     
+    @property
+    def parameters(self):
+        return {
+            "city": {
+                "type": "string",
+                "description": "City name"
+            }
+        }
+    
     def execute(self,city):
         coords = self.city_coords.get_city_coords(city)
         temp_data = self.get_weather_by_coords(coords)

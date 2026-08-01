@@ -9,6 +9,22 @@ class File_Organizer:
     def description(self):
         return "Tool to organize files in download folder"
     
+    @property
+    def parameters(self):
+        return {
+            "target": {
+                "type": "string",
+                "description": "Folder name"
+            },
+            "action": {
+                "type": "string",
+                "enum": [
+                    "move",
+                    "delete"
+                ]
+            }
+        }
+    
     def execute(self,target,action):
         print(target,action)
         if action=='move':
