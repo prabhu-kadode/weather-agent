@@ -30,11 +30,14 @@ class Weather_Agent:
                 prompt += f"- {name}: {info}\n"
 
             prompt += "\n"
+         
+       
 
         return prompt
     def run(self,user_input):
         prompt = self.build_tool_prompt()
-        print('Thinking....!')
+        print('Thinking....!',prompt)
+        
         
         data = json.loads(self.llm.decide(prompt,user_input))
         tool_name = data['tool']
@@ -43,3 +46,4 @@ class Weather_Agent:
         tool = self.tools[tool_name]
         response = tool.execute(**arguments)
         print(response)
+        return response

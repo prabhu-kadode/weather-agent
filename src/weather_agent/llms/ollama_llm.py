@@ -21,7 +21,7 @@ class Ollama_Llm:
                 Never answer the user's question.
                 Never explain.
                 Never use markdown.
-                Return ONLY valid JSON.
+                Return ONLY valid JSON and always see params mentioned above and return the format
                 Never wrap the JSON in ``` blocks.
                 """
                         },

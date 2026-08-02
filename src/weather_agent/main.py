@@ -4,10 +4,11 @@ def main():
     agent = Weather_Agent()
     
     while True:
-        user_question = input("What...!")
+        user_question = input("You..! ")
         if user_question.lower() == 'exit':
             break
-        agent.run(user_question)
+        agent_response = agent.run(user_question)
+        print("Agent: ",agent_response)
 if __name__ == "__main__":
     main()
  
