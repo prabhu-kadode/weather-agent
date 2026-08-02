@@ -3,6 +3,27 @@ from ollama import chat
 class Ollama_Llm:
     def __init__(self):
         self.model = "llama3:latest"
+    def analyze(self,prompt):
+        response = chat(
+            model = self.model,
+            messages =[
+                {
+                    "role":"system",
+                    "content":f"""
+                                You are smart inteliigent journalist and your job is to summarize 
+                                data, tempreture ,news and so on
+                                Data to be summarized:
+                                    {prompt}
+                                - Awlays keep summary simple and small. 
+                                - don' say Let me know if you'd like me to summarize anything else!
+                                - Just summarize and return response.No extra
+                                - also always provide one line suggestion based on your summary like summary plus your suggestion if you think so
+                                
+                                """
+                }
+            ]
+        )
+        return response['message']['content']
     def decide(self,prompt,user_input):
        
       
@@ -34,5 +55,5 @@ class Ollama_Llm:
                         "temperature": 0
                     }
             )
-        print("hi",response['message']['content'])
+        # print("hi",response['message']['content'])
         return response['message']['content']

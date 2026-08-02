@@ -9,7 +9,7 @@ class Weather_Agent:
     def __init__(self):
         self.llm = Ollama_Llm()
         
-
+        self.restricated_tools_for_analyze = ["calculator","fileorganizer"]
         self.tools = {
             "weather":Weather_Tool(),
             "calculator":Calculate(),
@@ -30,14 +30,10 @@ class Weather_Agent:
                 prompt += f"- {name}: {info}\n"
 
             prompt += "\n"
-         
-       
-
         return prompt
     def run(self,user_input):
         prompt = self.build_tool_prompt()
-        print('Thinking....!',prompt)
-        
+        print('Thinking....!')
         
         data = json.loads(self.llm.decide(prompt,user_input))
         tool_name = data['tool']
@@ -45,5 +41,7 @@ class Weather_Agent:
 
         tool = self.tools[tool_name]
         response = tool.execute(**arguments)
-        print(response)
-        return response
+        if tool_name in self.restricated_tools_for_analyze:
+            return response
+        return self.llm.analyze(response)
+       
