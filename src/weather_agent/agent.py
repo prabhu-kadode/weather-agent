@@ -1,6 +1,7 @@
 from tools.weather import Weather_Tool
 from tools.calculator import Calculate
 from tools.file_organizer import File_Organizer
+from tools.sumarry import Summary
 from llms.llm import GeminiLLM
 from llms.ollama_llm import Ollama_Llm
 
@@ -13,7 +14,8 @@ class Weather_Agent:
         self.tools = {
             "weather":Weather_Tool(),
             "calculator":Calculate(),
-            "fileorganizer":File_Organizer()
+            "fileorganizer":File_Organizer(),
+            "summary":Summary()
         }
     def build_tool_prompt(self):
 
@@ -38,7 +40,7 @@ class Weather_Agent:
         data = json.loads(self.llm.decide(prompt,user_input))
         tool_name = data['tool']
         arguments = data['params']
-
+        print(data)
         tool = self.tools[tool_name]
         response = tool.execute(**arguments)
         if tool_name in self.restricated_tools_for_analyze:

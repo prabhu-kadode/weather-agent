@@ -17,6 +17,10 @@ class File_Services:
     def deleteFile(self):
         pass
     def move_files(self,target):
+        target_folder = self.BASEPATH / target
+        if not target_folder.exists():
+            raise FileNotFoundError(f"{target_folder} does not exist")
+
         allfiles = self.listFiles(target)
         if len(allfiles)<=0:
             print(f"No files present in {target} folder to be organized" )

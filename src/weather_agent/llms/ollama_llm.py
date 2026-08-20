@@ -4,6 +4,8 @@ class Ollama_Llm:
     def __init__(self):
         self.model = "llama3:latest"
     def analyze(self,prompt):
+        print("-"*20)
+        print("Analysis started...")
         response = chat(
             model = self.model,
             messages =[
@@ -18,6 +20,7 @@ class Ollama_Llm:
                                 - don' say Let me know if you'd like me to summarize anything else!
                                 - Just summarize and return response.No extra
                                 - also always provide one line suggestion based on your summary like summary plus your suggestion if you think so
+                                - lastly summarise them in bullet points 
                                 
                                 """
                 }
