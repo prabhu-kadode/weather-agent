@@ -1,15 +1,23 @@
 from agent import Weather_Agent
+from error import Error
 import time 
+import traceback
 
 def main():
     agent = Weather_Agent()
+    error = Error()
+
     
     while True:
         user_question = input("\nYou..!")
         if user_question.lower() == 'exit':
             break
-        agent_response = agent.run(user_question)
-        printAnimate(agent_response)
+        try:
+            agent_response = agent.run(user_question)
+            printAnimate(agent_response)
+        except Exception as e:
+            error.log(e)
+            
 def printAnimate(data):
     if type(data)!=str:
         print(data)

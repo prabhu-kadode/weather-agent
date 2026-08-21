@@ -27,6 +27,28 @@ class Ollama_Llm:
             ]
         )
         return response['message']['content']
+    def enrich_text(self,prompt):
+       
+       
+        response = chat(
+            model = self.model,
+            messages =[
+                {
+                    "role":"system",
+                    "content":f"""
+                                You are smart inteliigent content writer and your job is to rewrite content
+                                for social media like instagram, twitter, facebook and linkedin. 
+                               
+                                Content to be rewritten:
+                                    {prompt}
+                                - Awlays rewrite professionally.
+                                - Just rewirte and return response. nothing extra like let me know and anything like that
+                                - always return enriched text. nothing extra
+                                """
+                }
+            ]
+        )
+        return response['message']['content']
     def decide(self,prompt,user_input):
        
       
@@ -39,6 +61,10 @@ class Ollama_Llm:
                 You are a routing engine.
 
                 Your job is ONLY to decide which tool should be called.
+                
+                if you don't find any matching tool then you return below tools becuase we will be searching the things on internet
+                {{"tool":"search_query", "params":{{"query":{user_input}}}}}
+                query could be any text that could be searched
 
                {prompt}
             

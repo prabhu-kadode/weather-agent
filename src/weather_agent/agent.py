@@ -2,20 +2,25 @@ from tools.weather import Weather_Tool
 from tools.calculator import Calculate
 from tools.file_organizer import File_Organizer
 from tools.sumarry import Summary
+from tools.search_query import Search_Query
+from weather_agent.tools.enrich_text import Enrich_Text
 from llms.llm import GeminiLLM
 from llms.ollama_llm import Ollama_Llm
+
 
 import json
 class Weather_Agent:
     def __init__(self):
         self.llm = Ollama_Llm()
-        
+        self.ENABLED_ANALYZE = False
         self.restricated_tools_for_analyze = ["calculator","fileorganizer"]
         self.tools = {
             "weather":Weather_Tool(),
             "calculator":Calculate(),
             "fileorganizer":File_Organizer(),
-            "summary":Summary()
+            "summary":Summary(),
+            "search_query":Search_Query(),
+            "enrich_text":Enrich_Text(),
         }
     def build_tool_prompt(self):
 
@@ -45,5 +50,5 @@ class Weather_Agent:
         response = tool.execute(**arguments)
         if tool_name in self.restricated_tools_for_analyze:
             return response
-        return self.llm.analyze(response)
+        return self.llm.analyze(response) if self.ENABLED_ANALYZE else response
        
