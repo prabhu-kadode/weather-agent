@@ -7,10 +7,11 @@ def main():
     agent = Weather_Agent()
     error = Error()
 
-    
+    printAnimate("Welcome to ai bird.....")
     while True:
         user_question = input("\nYou..!")
         if user_question.lower() == 'exit':
+            printAnimate("Thank You! See you again...!")
             break
         try:
             agent_response = agent.run(user_question)
