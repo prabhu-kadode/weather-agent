@@ -1,9 +1,7 @@
-import os
-from city_coords import City_COORDS
-
-
 import httpx
 from dotenv import load_dotenv
+
+from city_coords import City_COORDS
 
 load_dotenv()
 

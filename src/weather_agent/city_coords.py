@@ -1,4 +1,6 @@
 import httpx
+
+
 class City_COORDS:
     BASE_URL = "https://geocoding-api.open-meteo.com/v1/search"
     def __init__(self):

@@ -1,4 +1,6 @@
 from llms.ollama_llm import Ollama_Llm
+
+
 class Summary:
     def __init__(self):
         self.llm = Ollama_Llm()

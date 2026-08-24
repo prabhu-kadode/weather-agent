@@ -1,5 +1,6 @@
-from .google_search import Google_Search
 from .reddit_search import Reddit_Search
+
+
 class Search_Query:
     def __init__(self):
         self.search_engine = Reddit_Search()

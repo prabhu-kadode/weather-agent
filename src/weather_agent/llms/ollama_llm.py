@@ -1,5 +1,6 @@
 from ollama import chat
 
+
 class Ollama_Llm:
     def __init__(self):
         self.model = "llama3:latest"

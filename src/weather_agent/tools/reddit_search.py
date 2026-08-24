@@ -1,6 +1,9 @@
-from interface.search import Search
 from urllib.parse import quote
+
 import httpx
+
+from interface.search import Search
+
 
 class Reddit_Search(Search):
     def __init__(self):

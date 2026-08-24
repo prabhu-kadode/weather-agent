@@ -1,9 +1,11 @@
 import os
+
 import requests
+from bs4 import BeautifulSoup
 
 from interface.search import Search
 
-from bs4 import BeautifulSoup
+
 class Google_Search(Search):
     def __init__(self):
         self.url = "https://www.google.com/search"
@@ -26,7 +28,6 @@ class Google_Search(Search):
             href = link.get("href")
             print("HREF:", href)
 
-        return None
 
        
     def get_page_content(self,url):

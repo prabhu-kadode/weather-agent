@@ -1,4 +1,6 @@
 from ..llms.ollama_llm import Ollama_Llm
+
+
 class Enrich_Text:
     def __init__(self):
         self.llm = Ollama_Llm()

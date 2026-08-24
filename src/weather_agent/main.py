@@ -1,7 +1,8 @@
+import time
+
 from agent import Weather_Agent
 from error import Error
-import time 
-import traceback
+
 
 def main():
     agent = Weather_Agent()
