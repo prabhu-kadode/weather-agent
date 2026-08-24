@@ -5,6 +5,7 @@ from city_coords import City_COORDS
 
 load_dotenv()
 
+
 class Weather_Tool:
     # BASE_URL = "https://api.openweathermap.org/data/2.5/weather"
     BASE_URL = "https://api.weatherapi.com/v1/current.json"
@@ -16,33 +17,28 @@ class Weather_Tool:
     @property
     def name(self):
         return "weather"
+
     @property
     def description(self):
         return "Returns current weather for a given city."
-    
+
     @property
     def parameters(self):
-        return {
-            "city": {
-                "type": "string",
-                "description": "City name"
-            }
-        }
-    
-    def execute(self,city):
+        return {"city": {"type": "string", "description": "City name"}}
+
+    def execute(self, city):
         coords = self.city_coords.get_city_coords(city)
         temp_data = self.get_weather_by_coords(coords)
         return temp_data
 
-    def get_weather_by_coords(self,coords):
+    def get_weather_by_coords(self, coords):
         params = {
-            "latitude":coords['lat'],
-            "longitude":coords['longt'],
-            "current":"temperature_2m"
-            
+            "latitude": coords["lat"],
+            "longitude": coords["longt"],
+            "current": "temperature_2m",
         }
 
-        response = httpx.get(self.METEO_BASE_URL,params=params)
+        response = httpx.get(self.METEO_BASE_URL, params=params)
         response.raise_for_status()
 
         return response.json()

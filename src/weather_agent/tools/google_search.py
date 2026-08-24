@@ -9,17 +9,14 @@ from interface.search import Search
 class Google_Search(Search):
     def __init__(self):
         self.url = "https://www.google.com/search"
-        self.API_KEY = os.getenv('GEMINI_API_KEY')
-        self.GOOGLE_ID = os.getenv('GOOGLE_ID')
-    def search(self,query):
-        params = {
-        "q": query
-        }
-        headers = {
-            "User-Agent": "Mozilla/5.0"
-        }
+        self.API_KEY = os.getenv("GEMINI_API_KEY")
+        self.GOOGLE_ID = os.getenv("GOOGLE_ID")
 
-        response = requests.get(self.url, params=params,headers=headers)
+    def search(self, query):
+        params = {"q": query}
+        headers = {"User-Agent": "Mozilla/5.0"}
+
+        response = requests.get(self.url, params=params, headers=headers)
         response.raise_for_status()
 
         soup = BeautifulSoup(response.content, "html.parser")
@@ -28,12 +25,8 @@ class Google_Search(Search):
             href = link.get("href")
             print("HREF:", href)
 
-
-       
-    def get_page_content(self,url):
-        headers = {
-            "User-Agent": "Mozilla/5.0"
-        }
+    def get_page_content(self, url):
+        headers = {"User-Agent": "Mozilla/5.0"}
 
         response = requests.get(url, headers=headers, timeout=10)
         response.raise_for_status()
@@ -41,14 +34,7 @@ class Google_Search(Search):
         soup = BeautifulSoup(response.text, "html.parser")
 
         # Remove things that aren't useful for summarization
-        for element in soup([
-            "script",
-            "style",
-            "nav",
-            "footer",
-            "header",
-            "aside"
-        ]):
+        for element in soup(["script", "style", "nav", "footer", "header", "aside"]):
             element.decompose()
 
         text = soup.get_text(separator=" ", strip=True)

@@ -11,7 +11,7 @@ def main():
     printAnimate("Welcome to ai bird.....")
     while True:
         user_question = input("\nYou..!")
-        if user_question.lower() == 'exit':
+        if user_question.lower() == "exit":
             printAnimate("Thank You! See you again...!")
             break
         try:
@@ -19,17 +19,16 @@ def main():
             printAnimate(agent_response)
         except Exception as e:
             error.log(e)
-            
+
+
 def printAnimate(data):
-    if type(data)!=str:
+    if type(data) != str:
         print(data)
-        return 
+        return
     for char in data:
         print(char, end="", flush=True)
         time.sleep(0.01)
- 
+
 
 if __name__ == "__main__":
     main()
- 
- 
