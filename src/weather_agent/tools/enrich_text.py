@@ -7,7 +7,7 @@ class Enrich_Text:
         return "enrich_text"
     @property
     def description(self):
-        return "this is tool to enirch text in better way for posting on social media"
+        return "this is tool to enirch text or finetune or rewirte in better way for posting on social media"
     
     @property
     def parameters(self):
